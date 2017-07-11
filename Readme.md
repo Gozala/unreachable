@@ -11,7 +11,7 @@ Utility function for exhaustiveness checking with (typed) JS (Be it [TypeScript]
 
 ### Exhaustiveness checking for Tagged Unions
 
-[Tagged unions][] are present in both in Flow reffered as [Disjoint Unions][] and in TypeScript referred as [Discriminated Unions][]. Unfortunately both utilize [JS switch statements][] for pattern matching that comes with inherent limitations.
+[Tagged unions][] are present in both in Flow reffered as [Disjoint Unions][] and in TypeScript referred as [Discriminated Unions][]. Unfortunately both utilize [JS switch statements][switch] for pattern matching that comes with inherent limitations.
 
 Consider following example that is both flow & typescript code:
 
@@ -66,7 +66,7 @@ type Shape =
   | { kind: "square", size: number }
   | { kind: "rectangle", width: number, height: number }
   | { kind: "circle", radius: number }
-  | { kind: "triangle", a:number, b:number, c:number }
+  | { kind: "triangle", a:number, b:number, c:number } // <- added variant
 ```
 
 Last version of `area` function will still type check and accept triangles but type checker will not be able to report an error instead we'll get one at runtime.
@@ -85,7 +85,7 @@ There will be no erros reported by `area` function it will just return `undefine
 
 ## Solution
 
-This library provides default export function that takes single argument of the [bottom type][], which denotes type of the value that can never occur and throws a `TypeError` with helpful message when invoked. In TypeScript it is referred as [`never`][] and in Flow it (is not yet documented, but) is referred as `empty`.
+This library provides default export function that takes single argument of the [bottom type][], which denotes type of the value that can never occur and throws a `TypeError` with helpful message when invoked. In TypeScript it is referred as `never` and in Flow it (is not yet documented, but) is referred as `empty`.
 
 ```js
 import corrupt from "corrupt"
@@ -118,7 +118,7 @@ type Shape =
   | { kind: "square", size: number }
   | { kind: "rectangle", width: number, height: number }
   | { kind: "circle", radius: number }
-  | { kind: "triangle", a:number, b:number, c:number } // Variant was added
+  | { kind: "triangle", a:number, b:number, c:number } // <- Added variant
 
 const area = (shape: Shape):number => {
   switch (shape.kind) {

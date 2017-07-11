@@ -1,8 +1,21 @@
 {
-  "version": "0.1.0",
+  "version": "0.1.1",
   "name": "corrupt",
   "description": "Utility function for exhaustiveness checking with typed JS (TS or Flow)",
-  "keywords": ["corrupt", "typed", "flow"],
+  "keywords": [
+    "corrupt",
+    "typed",
+    "flow",
+    "typescript",
+    "exhaustiveness",
+    "bottom type",
+    "exhaustiveness checking",
+    "tagged unions",
+    "disjoint",
+    "discriminated",
+    "switch",
+    "default"
+  ],
   "main": "lib/corrupt",
   "module": "src/corrupt",
   "types": "src/corrupt",
