@@ -1,10 +1,10 @@
 /* @flow */
 
-import corrupt from "../"
+import unreachable from "../"
 import test from "blue-tape"
 
 test("baisc", async test => {
-  test.isEqual(typeof corrupt, "function", "default export is a function")
+  test.isEqual(typeof unreachable, "function", "default export is a function")
 
   type Shape =
     | { kind: "square", size: number }
@@ -20,11 +20,11 @@ test("baisc", async test => {
       case "circle":
         return Math.PI * shape.radius ** 2
       default:
-        return corrupt(shape)
+        return unreachable(shape)
     }
   }
 
   test.throws(() => {
     area(({ kind: "circl", radius: 7 }: any))
-  }, TypeError('Unexpected value { kind:"circl", radius:7 }, most likely due to non exhaustive type matching or because call site is not type checked and passed value of incorrect type'))
+  }, TypeError('Internal error: Encountered impossible value: { kind:"circl", radius:7 }'))
 })

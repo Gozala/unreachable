@@ -1,4 +1,4 @@
-# corrupt
+# unreachable
 [![travis][travis.icon]][travis.url]
 [![package][version.icon] ![downloads][downloads.icon]][package.url]
 [![styled with prettier][prettier.icon]][prettier.url]
@@ -88,7 +88,7 @@ There will be no erros reported by `area` function it will just return `undefine
 This library provides default export function that takes single argument of the [bottom type][], which denotes type of the value that can never occur and throws a `TypeError` with helpful message when invoked. In TypeScript it is referred as `never` and in Flow it (is not yet documented, but) is referred as `empty`.
 
 ```js
-import corrupt from "corrupt"
+import unreachable from "unreachable"
 
 type Shape =
   | { kind: "square", size: number }
@@ -104,7 +104,7 @@ const area = (shape: Shape):number => {
     case "circle":
       return Math.PI * shape.radius ** 2
     default:
-      return corrupt(shape)
+      return unreachable(shape)
   }
 }
 ```
@@ -112,7 +112,7 @@ const area = (shape: Shape):number => {
 Above code type checks both in Flow and TypeScript. While following code does not type check:
 
 ```js
-import corrupt from "corrupt"
+import unreachable from "unreachable"
 
 type Shape =
   | { kind: "square", size: number }
@@ -129,7 +129,7 @@ const area = (shape: Shape):number => {
     case "circle":
       return Math.PI * shape.radius ** 2
     default:
-      return corrupt(shape)
+      return unreachable(shape)
   }
 }
 ```
@@ -139,17 +139,21 @@ Flow will report that `shape:Shape` is incompatible with expected `empty` type. 
 Obviously type checker won't help with incorrect call from JS call site, but at least it will throw an exception from the `shape` function with helpful message and stack trace leading to the source of the error:
 
 ```js
-area({ kind:"circl", radius:7 }) // ! TypeError('Unexpected value { kind:"circl", radius:7 }, most likely due to non exhaustive type matching or because call site is not type checked and passed value of incorrect type')
+area({ kind:"circl", radius:7 })
+//> TypeError('Internal error: Encountered impossible value: { kind:"circl", radius:7 }')
 ```
-
-
-
 
 
 ## Install
 
-    npm install corrupt
+    npm install unreachable
 
+## Prior Art
+
+Somewhat inspired by Rust [unreachable][] macro.
+
+
+[unreachable]:https://doc.rust-lang.org/std/macro.unreachable.html
 [TypeScript]:http://typescriptlang.org/
 [Flow]:https://flow.org/
 [Discriminated Unions]:https://www.typescriptlang.org/docs/handbook/advanced-types.html#discriminated-unions
@@ -161,16 +165,16 @@ area({ kind:"circl", radius:7 }) // ! TypeError('Unexpected value { kind:"circl"
 [ts exhaustiveness]:https://www.typescriptlang.org/docs/handbook/advanced-types.html#exhaustiveness-checking
 [bottom type]:https://en.wikipedia.org/wiki/Bottom_type
 
-[travis.icon]: https://travis-ci.org/Gozala/corrupt.svg?branch=master
-[travis.url]: https://travis-ci.org/Gozala/corrupt
+[travis.icon]: https://travis-ci.org/Gozala/unreachable.svg?branch=master
+[travis.url]: https://travis-ci.org/Gozala/unreachable
 
-[version.icon]: https://img.shields.io/npm/v/corrupt.svg
-[downloads.icon]: https://img.shields.io/npm/dm/corrupt.svg
-[package.url]: https://npmjs.org/package/corrupt
+[version.icon]: https://img.shields.io/npm/v/unreachable.svg
+[downloads.icon]: https://img.shields.io/npm/dm/unreachable.svg
+[package.url]: https://npmjs.org/package/unreachable
 
 
-[downloads.image]: https://img.shields.io/npm/dm/corrupt.svg
-[downloads.url]: https://npmjs.org/package/corrupt
+[downloads.image]: https://img.shields.io/npm/dm/unreachable.svg
+[downloads.url]: https://npmjs.org/package/unreachable
 
 [prettier.icon]:https://img.shields.io/badge/styled_with-prettier-ff69b4.svg
 [prettier.url]:https://github.com/prettier/prettier

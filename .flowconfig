@@ -8,6 +8,6 @@
 [include]
 
 [options]
-
+module.name_mapper='unreachable' -> '<PROJECT_ROOT>/src/unreachable'
 suppress_comment= \\(.\\|\n\\)*\\@FlowIssue
 suppress_comment= \\(.\\|\n\\)*\\@FlowIgnore

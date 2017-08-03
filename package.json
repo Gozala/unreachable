@@ -1,9 +1,9 @@
 {
-  "version": "0.1.1",
-  "name": "corrupt",
+  "version": "0.2.0",
+  "name": "unreachable",
   "description": "Utility function for exhaustiveness checking with typed JS (TS or Flow)",
   "keywords": [
-    "corrupt",
+    "unreachable",
     "typed",
     "flow",
     "typescript",
@@ -16,23 +16,23 @@
     "switch",
     "default"
   ],
-  "main": "lib/corrupt",
-  "module": "src/corrupt",
-  "types": "src/corrupt",
+  "main": "lib/unreachable",
+  "module": "src/unreachable",
+  "types": "src/unreachable",
   "author": "Irakli Gozalishvili <rfobic@gmail.com> (http://jeditoolkit.com)",
-  "repository": "https://github.com/Gozala/corrupt",
+  "repository": "https://github.com/Gozala/unreachable",
   "license": "MIT",
   "devDependencies": {
     "babel-cli": "6.24.1",
     "babel-preset-flow-node": "^1.0.2",
     "babel-register": "6.24.1",
     "blue-tape": "^1.0.0",
-    "documentation": "^4.0.0-rc.1",
-    "flow-bin": "^0.49.1",
+    "documentation": "^5.1.0",
+    "flow-bin": "^0.52.0",
     "flow-copy-source": "^1.2.0",
     "husky": "^0.14.0",
-    "lint-staged": "^4.0.0",
-    "prettier": "^1.4.4"
+    "lint-staged": "^4.0.2",
+    "prettier": "^1.5.3"
   },
   "scripts": {
     "test": "npm run test:flow && npm run test:tape",
@@ -41,7 +41,7 @@
     "build:clear": "rm -rf lib",
     "build:types": "flow-copy-source --verbose src lib",
     "build:node": "babel --out-dir lib src",
-    "build:api": "documentation readme --section=API src/corrupt.js",
+    "build:api": "documentation readme --section=API src/unreachable.js",
     "build:docs": "documentation build --document-exported src/** -f html --o docs",
     "build": "npm run build:node && npm run build:types",
     "prepublish": "npm run build && npm test",
